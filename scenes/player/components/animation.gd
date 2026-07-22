@@ -13,9 +13,17 @@ func update() -> void:
 
 
 func _flip() -> void:
-	# Keep last facing when idle: only flip while actually moving.
+	# Giữ nguyên hướng cuối cùng nếu đang đứng im
 	if player.direction != 0:
+		# Lật hình ảnh
 		player.anim.flip_h = player.direction < 0
+		# Lật Hitbox bằng Scale thay vì Position
+		var hitbox = player.get_node("Hitbox")
+		if player.direction < 0:
+			hitbox.scale.x = -1 # Lật ngược toàn bộ Hitbox
+		else:
+			hitbox.scale.x = 1
+
 
 
 func _play_state_animation() -> void:
@@ -30,6 +38,8 @@ func _play_state_animation() -> void:
 			_play("double_jump")
 		Player.State.FALL:
 			_play("fall")
+		Player.State.ATTACK:
+			_play("attack")
 
 
 func _play(name: String) -> void:

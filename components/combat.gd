@@ -8,7 +8,7 @@ signal hp_changed(current: int, maximum: int)
 
 @export var max_hp: int = 100
 
-@onready var player: Player = owner
+
 
 var hp: int = max_hp
 

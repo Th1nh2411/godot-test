@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cc58xusm82mwf" path="res://scenes/player/Player.tscn" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://c3d1yh8l3hqrx" path="res://assets/pixel-adventure/Terrain/Terrain (16x16).png" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://csx6ebx3wo50l" path="res://scenes/camera/camera.tscn" id="5_kek77"]
+[ext_resource type="PackedScene" uid="uid://dqgfcqklibna6" path="res://scenes/enemy/Enemy.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://6pqnmiyjv2ds" path="res://scenes/levels/level1.tscn" id="6_7mycd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ycdy4"]
@@ -195,3 +196,6 @@ player = NodePath("../Player")
 [node name="Level1" parent="." unique_id=178166576 instance=ExtResource("6_7mycd")]
 
 [node name="Player" parent="." unique_id=1230083269 instance=ExtResource("4_1bvp3")]
+position = Vector2(-232, 79)
+
+[node name="Enemy" parent="." unique_id=268824080 instance=ExtResource("5_lquwl")]

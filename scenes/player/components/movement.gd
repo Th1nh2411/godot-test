@@ -14,6 +14,7 @@ var jump_count := 0
 
 func update(delta: float) -> void:
 	player.direction = Input.get_axis("ui_left", "ui_right")
+	_handle_attack()
 	_apply_gravity(delta)
 	_handle_jump()
 	_handle_horizontal()
@@ -31,6 +32,10 @@ func _handle_jump() -> void:
 		player.velocity.y = JUMP_VELOCITY
 		jump_count += 1
 
+func _handle_attack() -> void:
+	if Input.is_action_just_pressed("attack") and not player.is_attacking:
+		player.is_attacking = true
+		player.hitbox_collision.disabled = false # Bật vùng sát thương lên
 
 func _handle_horizontal() -> void:
 	if player.direction != 0:

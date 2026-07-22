@@ -4,6 +4,9 @@ class_name StateMachine
 ## No side effects — add DOUBLE_JUMP / WALL_JUMP / HIT / DASH branches here later.
 
 static func get_state(player: Player) -> Player.State:
+	if player.is_attacking:
+		return Player.State.ATTACK
+
 	if not player.is_on_floor():
 		if player.velocity.y < 0:
 			if player.movement.jump_count > 1:

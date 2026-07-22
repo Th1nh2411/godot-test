@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bmkh2tf5ufot3"]
+
+[ext_resource type="Script" uid="uid://b4sf8ruert66d" path="res://components/hitbox.gd" id="1_3l28h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ov1oi"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[node name="Hitbox" type="Area2D" unique_id=1816538479]
+script = ExtResource("1_3l28h")
+metadata/_custom_type_script = "uid://b4sf8ruert66d"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1340501381]
+shape = SubResource("RectangleShape2D_ov1oi")
+disabled = true
