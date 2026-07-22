@@ -19,9 +19,14 @@ var attack_range := 50.0 # Khoảng cách kích hoạt đấm
 func _ready() -> void:
 	combat.died.connect(_on_died)
 	combat.hp_changed.connect(_on_hp_changed)
+	combat.knockback_received.connect(_on_knockback_received)
 	anim.animation_finished.connect(_on_animation_finished)
 	# Cập nhật hướng ngay khi quái vật vừa sinh ra
 	_flip(direction)
+
+func _on_knockback_received(force: Vector2) -> void:
+	# Bị đẩy lùi
+	velocity = force
 
 func _physics_process(delta: float) -> void:
 	# Bật Hitbox (gây sát thương) CHỈ KHI đang ở trạng thái đấm
@@ -38,9 +43,11 @@ func _physics_process(delta: float) -> void:
 		State.ATTACK:
 			velocity.x = 0
 		State.DIE:
-			velocity.x = 0
+			# Cho phép văng lùi khi chết thay vì khựng lại
+			velocity.x = move_toward(velocity.x, 0, 800 * delta)
 		State.HIT:
-			velocity.x = 0
+			# Cho phép văng lùi và trượt chậm dần (Ma sát = 800)
+			velocity.x = move_toward(velocity.x, 0, 800 * delta)
 			
 	move_and_slide()
 	_update_animation_continuous()
@@ -83,9 +90,11 @@ func _flip(dir: int) -> void:
 	floor_detector.scale.x = dir
 
 func _process_patrol() -> void:
-	if wall_detector.is_colliding() or not floor_detector.is_colliding():
-		direction *= -1
-		_flip(direction)
+	# Chỉ kiểm tra quay đầu khi đã thực sự chạm đất (Tránh lỗi Raycast chưa kịp load ở Frame 0)
+	if is_on_floor():
+		if wall_detector.is_colliding() or not floor_detector.is_colliding():
+			direction *= -1
+			_flip(direction)
 		
 	velocity.x = direction * speed
 

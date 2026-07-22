@@ -465,11 +465,11 @@ size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhj2n"]
 resource_local_to_scene = true
-size = Vector2(23.749998, 21.562496)
+size = Vector2(19.999998, 19.999996)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qeto5"]
 resource_local_to_scene = true
-size = Vector2(20, 21.333334)
+size = Vector2(21.333336, 21.333334)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ca8m"]
 radius = 150.0
@@ -498,10 +498,10 @@ tracks/0/path = NodePath("Hitbox/CollisionShape2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.43333334, 0.76666665, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.69037646, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(16, 0), Vector2(-16, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(-16, 0), Vector2(17, 0), Vector2(16, 0), Vector2(17.999998, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_50hyi"]
@@ -514,7 +514,7 @@ _data = {
 script = ExtResource("1_k74vj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=395098856]
-position = Vector2(0, -15)
+position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_rmtfb")
 animation = &"attack"
 frame = 9
@@ -531,7 +531,6 @@ max_hp = 30
 [node name="Hitbox" parent="." unique_id=1816538479 instance=ExtResource("13_fxrxe")]
 
 [node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=1340501381]
-visible = false
 position = Vector2(16, 0)
 scale = Vector2(1.6, 1.6)
 shape = SubResource("RectangleShape2D_uhj2n")

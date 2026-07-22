@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dbmsxfcht1s7s"]
+
+[ext_resource type="Script" uid="uid://j7xkoe3bwokx" path="res://scenes/ui/game_over/game_over.gd" id="1_jigkw"]
+
+[sub_resource type="Theme" id="Theme_8rfh6"]
+default_font_size = 50
+
+[sub_resource type="Theme" id="Theme_jigkw"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=1245438225]
+layer = 100
+script = ExtResource("1_jigkw")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=812833780]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1940474651]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = -92.0
+offset_right = 143.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_8rfh6")
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="ColorRect" unique_id=1893637113]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.75
+offset_top = -15.5
+offset_right = 40.75
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jigkw")
+text = "Retry:)"

@@ -5,6 +5,7 @@ class_name CombatComponent
 
 signal died
 signal hp_changed(current: int, maximum: int)
+signal knockback_received(force: Vector2)
 
 @export var max_hp: int = 100
 
@@ -13,12 +14,15 @@ signal hp_changed(current: int, maximum: int)
 var hp: int = max_hp
 var is_invincible: bool = false
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, knockback_force: Vector2 = Vector2.ZERO) -> void:
 	if amount <= 0 or is_invincible or not is_alive():
 		return
 		
 	hp = maxi(hp - amount, 0)
 	hp_changed.emit(hp, max_hp)
+	
+	if knockback_force != Vector2.ZERO:
+		knockback_received.emit(knockback_force)
 	
 	if hp == 0:
 		died.emit()
