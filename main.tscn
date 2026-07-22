@@ -199,3 +199,4 @@ player = NodePath("../Player")
 position = Vector2(-232, 79)
 
 [node name="Enemy" parent="." unique_id=268824080 instance=ExtResource("5_lquwl")]
+position = Vector2(1, 80)

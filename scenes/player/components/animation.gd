@@ -40,6 +40,12 @@ func _play_state_animation() -> void:
 			_play("fall")
 		Player.State.ATTACK:
 			_play("attack")
+		Player.State.APPEAR:
+			_play("appear")
+		Player.State.HIT:
+			_play("hit")
+		Player.State.DIE:
+			_play("die")
 
 
 func _play(name: String) -> void:

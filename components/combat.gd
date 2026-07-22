@@ -11,15 +11,24 @@ signal hp_changed(current: int, maximum: int)
 
 
 var hp: int = max_hp
-
+var is_invincible: bool = false
 
 func take_damage(amount: int) -> void:
-	if amount <= 0:
+	if amount <= 0 or is_invincible or not is_alive():
 		return
+		
 	hp = maxi(hp - amount, 0)
 	hp_changed.emit(hp, max_hp)
+	
 	if hp == 0:
 		died.emit()
+	else:
+		# Bật trạng thái bất tử
+		is_invincible = true
+		# Chờ 0.5 giây
+		await get_tree().create_timer(0.5).timeout
+		# Tắt trạng thái bất tử
+		is_invincible = false
 
 
 func heal(amount: int) -> void:

@@ -4,6 +4,15 @@ class_name StateMachine
 ## No side effects — add DOUBLE_JUMP / WALL_JUMP / HIT / DASH branches here later.
 
 static func get_state(player: Player) -> Player.State:
+	if player.is_dead:
+		return Player.State.DIE
+		
+	if player.is_appearing:
+		return Player.State.APPEAR
+		
+	if player.is_hit:
+		return Player.State.HIT
+		
 	if player.is_attacking:
 		return Player.State.ATTACK
 

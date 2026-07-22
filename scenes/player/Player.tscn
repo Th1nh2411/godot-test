@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dkjj22ak8qjxy" path="res://assets/pixel-adventure/Main Characters/Mask Dude/attack.png" id="2_20koh"]
 [ext_resource type="Texture2D" uid="uid://cgk8qgfovv51t" path="res://assets/pixel-adventure/Main Characters/Mask Dude/Idle (32x32).png" id="2_npwbq"]
 [ext_resource type="Texture2D" uid="uid://chsn2reovl4l6" path="res://assets/pixel-adventure/Main Characters/Mask Dude/Double Jump (32x32).png" id="2_pn6s4"]
+[ext_resource type="Texture2D" uid="uid://dxgr2w2c2fyp8" path="res://assets/pixel-adventure/Main Characters/Appearing (96x96).png" id="2_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://bu4gii52k7r86" path="res://assets/pixel-adventure/Main Characters/Mask Dude/Jump (32x32).png" id="3_v42im"]
+[ext_resource type="Texture2D" uid="uid://cmvhjwcyp41m1" path="res://assets/pixel-adventure/Main Characters/Desappearing (96x96).png" id="4_8qjgm"]
 [ext_resource type="Texture2D" uid="uid://cjxvpc7bd7i6o" path="res://assets/pixel-adventure/Main Characters/Mask Dude/Run (32x32).png" id="4_pn6s4"]
 [ext_resource type="Texture2D" uid="uid://c7v70rf0ojrgf" path="res://assets/pixel-adventure/Main Characters/Mask Dude/Hit (32x32).png" id="5_ov1oi"]
 [ext_resource type="Script" uid="uid://cqdmyqwuko4vu" path="res://scenes/player/player.gd" id="5_player"]
@@ -13,6 +15,34 @@
 [ext_resource type="Script" uid="uid://bvxgyb2dm6465" path="res://components/combat.gd" id="8_combat"]
 [ext_resource type="PackedScene" uid="uid://ctyhlu43em2jl" path="res://components/Hurtbox.tscn" id="12_20koh"]
 [ext_resource type="PackedScene" uid="uid://bmkh2tf5ufot3" path="res://components/Hitbox.tscn" id="13_ov1oi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mndc6"]
+atlas = ExtResource("2_rn7t0")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hh02"]
+atlas = ExtResource("2_rn7t0")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ttev"]
+atlas = ExtResource("2_rn7t0")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_geaob"]
+atlas = ExtResource("2_rn7t0")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsmrd"]
+atlas = ExtResource("2_rn7t0")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtlb7"]
+atlas = ExtResource("2_rn7t0")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ye1dr"]
+atlas = ExtResource("2_rn7t0")
+region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qjgm"]
 atlas = ExtResource("2_20koh")
@@ -33,6 +63,34 @@ region = Rect2(96, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_kswpp"]
 atlas = ExtResource("2_20koh")
 region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvphr"]
+atlas = ExtResource("4_8qjgm")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05p8n"]
+atlas = ExtResource("4_8qjgm")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eac1a"]
+atlas = ExtResource("4_8qjgm")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijyjs"]
+atlas = ExtResource("4_8qjgm")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4b0l"]
+atlas = ExtResource("4_8qjgm")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3hyo"]
+atlas = ExtResource("4_8qjgm")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pysui"]
+atlas = ExtResource("4_8qjgm")
+region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7oing"]
 atlas = ExtResource("2_pn6s4")
@@ -182,6 +240,32 @@ region = Rect2(352, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mndc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hh02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ttev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_geaob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsmrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtlb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ye1dr")
+}],
+"loop": 0,
+"name": &"appear",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8qjgm")
 }, {
 "duration": 1.0,
@@ -199,6 +283,32 @@ animations = [{
 "loop": 0,
 "name": &"attack",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvphr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05p8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eac1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijyjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4b0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3hyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pysui")
+}],
+"loop": 0,
+"name": &"die",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -255,7 +365,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"hit",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -356,12 +466,17 @@ size = Vector2(23, 27)
 resource_local_to_scene = true
 size = Vector2(20, 22)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20koh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov1oi"]
+bg_color = Color(0.8038796, 0, 0.053938627, 1)
+
 [node name="Player" type="CharacterBody2D" unique_id=1230083269]
 script = ExtResource("5_player")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1880584652]
 sprite_frames = SubResource("SpriteFrames_8rfh6")
-animation = &"attack"
+animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075478819]
 visible = false
@@ -394,6 +509,18 @@ shape = SubResource("RectangleShape2D_20koh")
 [node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=1340501381]
 position = Vector2(15, 3)
 shape = SubResource("RectangleShape2D_ov1oi")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1577125011]
+
+[node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=540210833]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 45.0
+theme_override_styles/background = SubResource("StyleBoxFlat_20koh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ov1oi")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]
