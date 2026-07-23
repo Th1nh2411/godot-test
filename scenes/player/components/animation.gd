@@ -46,6 +46,8 @@ func _play_state_animation() -> void:
 			_play("hit")
 		Player.State.DIE:
 			_play("die")
+		Player.State.DASH:
+			_play("dash")
 
 
 func _play(name: String) -> void:

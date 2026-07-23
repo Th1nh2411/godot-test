@@ -23,4 +23,8 @@ func _on_area_entered(area: Area2D) -> void:
 		var applied_knockback = Vector2(knockback_power.x * dir, knockback_power.y)
 		
 		# Truyền lực đẩy vào cùng với sát thương
-		area.take_damage(damage, applied_knockback)
+		var success = area.take_damage(damage, applied_knockback)
+		
+		if success:
+			# Kêu gọi toàn bộ Camera trong hệ thống rung lên với cường độ 15.0
+			get_tree().call_group("camera", "apply_shake", 15.0)

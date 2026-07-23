@@ -7,18 +7,52 @@ class_name MovementComponent
 const SPEED := 300.0
 const JUMP_VELOCITY := -400.0
 const MAX_JUMPS := 2
+const DASH_SPEED := 800.0
 
 @onready var player: Player = owner
 var jump_count := 0
-
+var can_dash := true
 
 func update(delta: float) -> void:
-	player.direction = Input.get_axis("ui_left", "ui_right")
+	# Nếu đang lướt, bỏ qua mọi thao tác di chuyển/nhảy khác
+	if player.is_dashing:
+		_apply_dash_movement()
+		return
+		
+	player.direction = Input.get_axis("move_left", "move_right")
+	_handle_dash_input()
 	_handle_attack()
 	_apply_gravity(delta)
 	_handle_jump()
 	_handle_horizontal()
 
+func _handle_dash_input() -> void:
+	# Phải có nút 'dash' trong Input Map và không đang chém/chờ hồi chiêu
+	if Input.is_action_just_pressed("dash") and can_dash and not player.is_attacking:
+		player.is_dashing = true
+		can_dash = false
+		player.combat.is_invincible = true # Bật khiên bất tử
+		
+		# Lướt theo hướng đang bấm, nếu không bấm thì lướt theo hướng đang quay mặt
+		if player.direction != 0:
+			player.dash_direction = player.direction
+		else:
+			# flip_h = false nghĩa là đang quay phải (1.0), ngược lại là trái (-1.0)
+			player.dash_direction = -1.0 if player.anim.flip_h else 1.0
+			
+		# Thời gian lướt là 0.2s
+		get_tree().create_timer(0.2).timeout.connect(_on_dash_finished)
+		# Thời gian hồi chiêu lướt là 0.6s
+		get_tree().create_timer(0.6).timeout.connect(func(): can_dash = true)
+
+func _apply_dash_movement() -> void:
+	player.velocity.y = 0 # Vô hiệu hóa trọng lực khi lướt
+	player.velocity.x = player.dash_direction * DASH_SPEED
+
+func _on_dash_finished() -> void:
+	if not player.is_dead:
+		player.is_dashing = false
+		player.combat.is_invincible = false
 
 func _apply_gravity(delta: float) -> void:
 	if not player.is_on_floor():

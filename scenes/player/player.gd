@@ -13,12 +13,15 @@ enum State {
 	ATTACK,
 	APPEAR,
 	DIE,
-	HIT
+	HIT,
+	DASH
 }
 var is_attacking: bool = false
 var is_appearing: bool = true
 var is_dead: bool = false
 var is_hit: bool = false
+var is_dashing: bool = false
+var dash_direction: float = 1.0
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var movement: MovementComponent = $Components/Movement

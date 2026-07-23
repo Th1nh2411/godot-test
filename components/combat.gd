@@ -14,9 +14,9 @@ signal knockback_received(force: Vector2)
 var hp: int = max_hp
 var is_invincible: bool = false
 
-func take_damage(amount: int, knockback_force: Vector2 = Vector2.ZERO) -> void:
+func take_damage(amount: int, knockback_force: Vector2 = Vector2.ZERO) -> bool:
 	if amount <= 0 or is_invincible or not is_alive():
-		return
+		return false
 		
 	hp = maxi(hp - amount, 0)
 	hp_changed.emit(hp, max_hp)
@@ -29,10 +29,10 @@ func take_damage(amount: int, knockback_force: Vector2 = Vector2.ZERO) -> void:
 	else:
 		# Bật trạng thái bất tử
 		is_invincible = true
-		# Chờ 0.5 giây
-		await get_tree().create_timer(0.5).timeout
-		# Tắt trạng thái bất tử
-		is_invincible = false
+		# Chờ 0.5 giây rồi tắt trạng thái bất tử (dùng connect thay vì await)
+		get_tree().create_timer(0.5).timeout.connect(func(): is_invincible = false)
+		
+	return true
 
 
 func heal(amount: int) -> void:

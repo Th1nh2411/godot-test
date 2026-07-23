@@ -13,6 +13,9 @@ static func get_state(player: Player) -> Player.State:
 	if player.is_hit:
 		return Player.State.HIT
 		
+	if player.is_dashing:
+		return Player.State.DASH
+		
 	if player.is_attacking:
 		return Player.State.ATTACK
 

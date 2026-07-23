@@ -64,6 +64,10 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("2_20koh")
 region = Rect2(128, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ntn1"]
+atlas = ExtResource("3_v42im")
+region = Rect2(0, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvphr"]
 atlas = ExtResource("4_8qjgm")
 region = Rect2(0, 0, 96, 96)
@@ -286,6 +290,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4ntn1")
+}],
+"loop": 1,
+"name": &"dash",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bvphr")
 }, {
 "duration": 1.0,
@@ -476,7 +488,7 @@ script = ExtResource("5_player")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1880584652]
 sprite_frames = SubResource("SpriteFrames_8rfh6")
-animation = &"hit"
+animation = &"dash"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075478819]
 visible = false

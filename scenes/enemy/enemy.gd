@@ -8,7 +8,7 @@ var player_target: Player = null
 var direction := 1
 var speed := 100.0
 var chase_speed := 150.0
-var attack_range := 50.0 # Khoảng cách kích hoạt đấm
+var attack_range := 40.0 # Khoảng cách kích hoạt đấm
 
 @onready var wall_detector: RayCast2D = $WallDetector
 @onready var floor_detector: RayCast2D = $FloorDetector
