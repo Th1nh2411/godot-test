@@ -20,6 +20,9 @@ static func get_state(player: Player) -> Player.State:
 		return Player.State.ATTACK
 
 	if not player.is_on_floor():
+		if player.velocity.y > 0 and player.is_on_wall() and player.direction != 0 and player.direction == -sign(player.get_wall_normal().x):
+			return Player.State.WALL_SLIDE
+			
 		if player.velocity.y < 0:
 			if player.movement.jump_count > 1:
 				return Player.State.DOUBLE_JUMP

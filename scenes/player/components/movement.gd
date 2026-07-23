@@ -8,10 +8,13 @@ const SPEED := 300.0
 const JUMP_VELOCITY := -400.0
 const MAX_JUMPS := 2
 const DASH_SPEED := 800.0
+const WALL_SLIDE_SPEED := 100.0
+const WALL_JUMP_VELOCITY_X := 100.0
 
 @onready var player: Player = owner
 var jump_count := 0
 var can_dash := true
+var wall_jump_lock := false
 
 func update(delta: float) -> void:
 	# Nếu đang lướt, bỏ qua mọi thao tác di chuyển/nhảy khác
@@ -56,15 +59,30 @@ func _on_dash_finished() -> void:
 
 func _apply_gravity(delta: float) -> void:
 	if not player.is_on_floor():
-		player.velocity += player.get_gravity() * delta
+		# Nếu đang rơi, chạm tường và ép phím vào tường -> Trượt tường
+		if player.velocity.y > 0 and player.is_on_wall() and player.direction != 0 and player.direction == -sign(player.get_wall_normal().x):
+			player.velocity.y = min(player.velocity.y + player.get_gravity().y * delta, WALL_SLIDE_SPEED)
+			jump_count = 0 # Cho phép nhảy đúp sau khi rời tường
+		else:
+			player.velocity += player.get_gravity() * delta
 	else:
 		jump_count = 0
 
 
 func _handle_jump() -> void:
-	if Input.is_action_just_pressed("ui_accept") and jump_count < MAX_JUMPS:
-		player.velocity.y = JUMP_VELOCITY
-		jump_count += 1
+	if Input.is_action_just_pressed("ui_accept"):
+		# Wall Jump: Chạm tường, trên không, và đang ép vào tường
+		if player.is_on_wall() and not player.is_on_floor() and player.direction != 0 and player.direction == -sign(player.get_wall_normal().x):
+			player.velocity.y = JUMP_VELOCITY
+			# Bật ra hướng ngược lại với bức tường
+			player.velocity.x = sign(player.get_wall_normal().x) * WALL_JUMP_VELOCITY_X
+			jump_count = 1
+			# Khóa di chuyển ngang trong 0.2s để lực bật không bị ghi đè
+			wall_jump_lock = true
+			get_tree().create_timer(0.2).timeout.connect(func(): wall_jump_lock = false)
+		elif jump_count < MAX_JUMPS:
+			player.velocity.y = JUMP_VELOCITY
+			jump_count += 1
 
 func _handle_attack() -> void:
 	if Input.is_action_just_pressed("attack") and not player.is_attacking:
@@ -72,6 +90,9 @@ func _handle_attack() -> void:
 		player.hitbox_collision.disabled = false # Bật vùng sát thương lên
 
 func _handle_horizontal() -> void:
+	if wall_jump_lock:
+		return # Không ghi đè velocity.x nếu vừa bật tường
+		
 	if player.direction != 0:
 		player.velocity.x = player.direction * SPEED
 	else:

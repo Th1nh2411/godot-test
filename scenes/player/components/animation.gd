@@ -48,6 +48,8 @@ func _play_state_animation() -> void:
 			_play("die")
 		Player.State.DASH:
 			_play("dash")
+		Player.State.WALL_SLIDE:
+			_play("wall_slide")
 
 
 func _play(name: String) -> void:

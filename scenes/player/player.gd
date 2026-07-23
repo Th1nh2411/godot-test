@@ -14,7 +14,8 @@ enum State {
 	APPEAR,
 	DIE,
 	HIT,
-	DASH
+	DASH,
+	WALL_SLIDE
 }
 var is_attacking: bool = false
 var is_appearing: bool = true

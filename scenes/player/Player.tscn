@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c5nl4sqxpo21l" path="res://scenes/player/components/movement.gd" id="6_movement"]
 [ext_resource type="Script" uid="uid://dp8nkd5n4pmnw" path="res://scenes/player/components/animation.gd" id="7_animation"]
 [ext_resource type="Script" uid="uid://bvxgyb2dm6465" path="res://components/combat.gd" id="8_combat"]
+[ext_resource type="Texture2D" uid="uid://x1xqsb26ndcs" path="res://assets/pixel-adventure/Main Characters/Mask Dude/Wall Jump (32x32).png" id="11_8qjgm"]
 [ext_resource type="PackedScene" uid="uid://ctyhlu43em2jl" path="res://components/Hurtbox.tscn" id="12_20koh"]
 [ext_resource type="PackedScene" uid="uid://bmkh2tf5ufot3" path="res://components/Hitbox.tscn" id="13_ov1oi"]
 
@@ -240,6 +241,26 @@ region = Rect2(320, 0, 32, 32)
 atlas = ExtResource("4_pn6s4")
 region = Rect2(352, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtkor"]
+atlas = ExtResource("11_8qjgm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wslmf"]
+atlas = ExtResource("11_8qjgm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3aff"]
+atlas = ExtResource("11_8qjgm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n65jb"]
+atlas = ExtResource("11_8qjgm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf4f6"]
+atlas = ExtResource("11_8qjgm")
+region = Rect2(128, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_8rfh6"]
 animations = [{
 "frames": [{
@@ -465,6 +486,26 @@ animations = [{
 "loop": 1,
 "name": &"run",
 "speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtkor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wslmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3aff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n65jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf4f6")
+}],
+"loop": 1,
+"name": &"wall_slide",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ca8m"]
@@ -488,7 +529,7 @@ script = ExtResource("5_player")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1880584652]
 sprite_frames = SubResource("SpriteFrames_8rfh6")
-animation = &"dash"
+animation = &"wall_slide"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075478819]
 visible = false
