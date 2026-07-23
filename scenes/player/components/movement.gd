@@ -88,6 +88,11 @@ func _handle_attack() -> void:
 	if Input.is_action_just_pressed("attack") and not player.is_attacking:
 		player.is_attacking = true
 		player.hitbox_collision.disabled = false # Bật vùng sát thương lên
+		
+		# Ép Godot quét lại các mục tiêu đang đứng đè lên nhau (Sửa lỗi chém trượt khi đứng im)
+		var hitbox = player.hitbox_collision.get_parent()
+		hitbox.set_deferred("monitoring", false)
+		hitbox.set_deferred("monitoring", true)
 
 func _handle_horizontal() -> void:
 	if wall_jump_lock:

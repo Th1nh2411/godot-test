@@ -11,7 +11,7 @@ signal knockback_received(force: Vector2)
 
 
 
-var hp: int = max_hp
+@onready var hp: int = max_hp
 var is_invincible: bool = false
 
 func take_damage(amount: int, knockback_force: Vector2 = Vector2.ZERO) -> bool:

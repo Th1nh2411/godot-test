@@ -15,8 +15,13 @@ var attack_range := 40.0 # Khoảng cách kích hoạt đấm
 @onready var combat = $Combat
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox_collision: CollisionShape2D = $Hitbox/CollisionShape2D
+@onready var hp_bar: ProgressBar = get_node_or_null("HPBar")
 
+var hp_bar_timer: float = 0.0
 func _ready() -> void:
+	if hp_bar:
+		hp_bar.hide()
+		
 	combat.died.connect(_on_died)
 	combat.hp_changed.connect(_on_hp_changed)
 	combat.knockback_received.connect(_on_knockback_received)
@@ -28,9 +33,24 @@ func _on_knockback_received(force: Vector2) -> void:
 	# Bị đẩy lùi
 	velocity = force
 
+func _process(delta: float) -> void:
+	if hp_bar_timer > 0:
+		hp_bar_timer -= delta
+		if hp_bar_timer <= 0 and hp_bar:
+			hp_bar.hide()
+
 func _physics_process(delta: float) -> void:
-	# Bật Hitbox (gây sát thương) CHỈ KHI đang ở trạng thái đấm
+	# Luôn cập nhật Hitbox đầu tiên: Chỉ bật khi đang ở trạng thái đấm.
+	# (Làm thế này để đảm bảo khi State == DIE, hitbox chắc chắn bị tắt trước khi lệnh return chạy)
 	hitbox_collision.disabled = (current_state != State.ATTACK)
+	
+	# Đóng băng vật lý khi xác đã chạm đất
+	if current_state == State.DIE and is_on_floor():
+		var col = get_node_or_null("CollisionShape2D")
+		if col and not col.disabled:
+			col.disabled = true
+		return
+		
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -134,6 +154,12 @@ func _on_animation_finished() -> void:
 			change_state(State.PATROL)
 
 func _on_hp_changed(current_hp: int, max_hp: int) -> void:
+	if hp_bar:
+		hp_bar.max_value = max_hp
+		hp_bar.value = current_hp
+		hp_bar.show()
+		hp_bar_timer = 3.0
+		
 	if current_state != State.DIE:
 		change_state(State.HIT)
 		get_tree().create_timer(0.5).timeout.connect(_on_stun_finished)
@@ -157,7 +183,11 @@ func _on_player_detector_body_exited(body: Node2D) -> void:
 			change_state(State.PATROL)
 
 func _on_died() -> void:
+	if hp_bar:
+		hp_bar.hide()
 	change_state(State.DIE)
 	var hurtbox_col = get_node_or_null("Hurtbox/CollisionShape2D")
 	if hurtbox_col:
 		hurtbox_col.set_deferred("disabled", true)
+		
+	# Xóa đoạn set layer/mask ở đây, ta sẽ xử lý lúc nó chạm đất ở physics_process

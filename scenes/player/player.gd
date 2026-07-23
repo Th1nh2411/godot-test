@@ -32,9 +32,19 @@ var dash_direction: float = 1.0
 
 @onready var health_bar: ProgressBar = get_node_or_null("HUD/HealthBar")
 
+## Hệ thống Điểm số
+signal score_changed(new_score: int)
+var score: int = 0
+
 ## Shared state, owned by Player and read by every component.
 var direction: float = 0.0
 var state: State = State.IDLE
+
+func add_score(amount: int) -> void:
+	score += amount
+	score_changed.emit(score)
+	# Bạn có thể in tạm ra Console để test trước khi vẽ UI
+	print("Nhặt được tiền! Điểm hiện tại: ", score)
 
 func _ready() -> void:
 	# Bắt sự kiện khi animation chạy xong để kết thúc trạng thái
@@ -66,6 +76,7 @@ func _on_hp_changed(current_hp: int, max_hp: int) -> void:
 
 func _on_died() -> void:
 	is_dead = true
+	# Xóa đoạn set layer/mask, xử lý ở physics_process
 	# Ẩn thanh máu/HUD đi khi đã chết để không bị đè lên màn hình Game Over
 	var hud = get_node_or_null("HUD")
 	if hud:
@@ -92,6 +103,13 @@ func _on_animation_finished() -> void:
 			queue_free()
 
 func _physics_process(delta: float) -> void:
+	# Đóng băng vật lý khi xác đã chạm đất
+	if is_dead and is_on_floor():
+		var col = get_node_or_null("CollisionShape2D")
+		if col and not col.disabled:
+			col.disabled = true
+		return
+		
 	# Nếu đang xuất hiện, bị đánh hoặc đã chết thì KHÔNG cho phép di chuyển (Bị choáng)
 	if is_appearing or is_dead or is_hit:
 		# Thay vì khóa chết velocity.x = 0, ta làm nó chậm dần bằng ma sát (friction = 800)

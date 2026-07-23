@@ -509,30 +509,38 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ca8m"]
-size = Vector2(32, 32)
+size = Vector2(21, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_20koh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qjgm"]
 resource_local_to_scene = true
-size = Vector2(23, 27)
+size = Vector2(21, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ov1oi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejd4k"]
 resource_local_to_scene = true
 size = Vector2(20, 22)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20koh"]
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ov1oi"]
 bg_color = Color(0.8038796, 0, 0.053938627, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Player" type="CharacterBody2D" unique_id=1230083269]
 script = ExtResource("5_player")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1880584652]
 sprite_frames = SubResource("SpriteFrames_8rfh6")
-animation = &"wall_slide"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075478819]
-visible = false
+position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_4ca8m")
 
 [node name="Components" type="Node" parent="." unique_id=118168445]
@@ -554,18 +562,20 @@ script = ExtResource("8_combat")
 combat = NodePath("../Components/Combat")
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1458550662]
-position = Vector2(2, 3)
-shape = SubResource("RectangleShape2D_20koh")
+position = Vector2(0.5, 3.5)
+shape = SubResource("RectangleShape2D_8qjgm")
 
 [node name="Hitbox" parent="." unique_id=1816538479 instance=ExtResource("13_ov1oi")]
 
 [node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=1340501381]
 position = Vector2(15, 3)
-shape = SubResource("RectangleShape2D_ov1oi")
+shape = SubResource("RectangleShape2D_ejd4k")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1577125011]
 
 [node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=540210833]
+anchors_preset = -1
+anchor_bottom = -0.04375
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 220.0
