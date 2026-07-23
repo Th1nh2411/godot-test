@@ -2,8 +2,33 @@
 
 [ext_resource type="Script" uid="uid://dkr3cc51vrydk" path="res://scenes/items/item.gd" id="1_15uob"]
 [ext_resource type="Texture2D" uid="uid://dbum5rrhecref" path="res://assets/pixel-adventure/Items/Fruits/Apple.png" id="2_m26mx"]
+[ext_resource type="Texture2D" uid="uid://cpvayxuwldm83" path="res://assets/pixel-adventure/Items/Fruits/Collected.png" id="2_o4u0o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dk64t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_276jf"]
+atlas = ExtResource("2_o4u0o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6e4i"]
+atlas = ExtResource("2_o4u0o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbpet"]
+atlas = ExtResource("2_o4u0o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57und"]
+atlas = ExtResource("2_o4u0o")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtlop"]
+atlas = ExtResource("2_o4u0o")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_didt5"]
+atlas = ExtResource("2_o4u0o")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f8k4j"]
 atlas = ExtResource("2_m26mx")
@@ -77,6 +102,29 @@ region = Rect2(512, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_276jf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6e4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbpet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57und")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtlop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_didt5")
+}],
+"loop": 0,
+"name": &"collected",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_f8k4j")
 }, {
 "duration": 1.0,
@@ -129,7 +177,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 5.0
+"speed": 17.0
 }]
 
 [node name="Fruit1" type="Area2D" unique_id=465741370]
@@ -140,5 +188,6 @@ value = 20
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1830547027]
 shape = SubResource("CircleShape2D_dk64t")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1630216330]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1630216330]
 sprite_frames = SubResource("SpriteFrames_4ca8m")
+animation = &"collected"

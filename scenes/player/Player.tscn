@@ -511,11 +511,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ca8m"]
 size = Vector2(21, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qjgm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejd4k"]
 resource_local_to_scene = true
 size = Vector2(21, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejd4k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xrq6"]
 resource_local_to_scene = true
 size = Vector2(20, 22)
 
@@ -540,6 +540,7 @@ sprite_frames = SubResource("SpriteFrames_8rfh6")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075478819]
+visible = false
 position = Vector2(0.5, 3.5)
 shape = SubResource("RectangleShape2D_4ca8m")
 
@@ -556,25 +557,26 @@ script = ExtResource("8_combat")
 
 [node name="Main" type="Node2D" parent="." unique_id=1875342497]
 
-[node name="WeaponPosition" type="Marker2D" parent="." unique_id=58609783]
-
 [node name="Hurtbox" parent="." unique_id=1044864479 node_paths=PackedStringArray("combat") instance=ExtResource("12_20koh")]
+visible = false
 combat = NodePath("../Components/Combat")
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1458550662]
 position = Vector2(0.5, 3.5)
-shape = SubResource("RectangleShape2D_8qjgm")
+shape = SubResource("RectangleShape2D_ejd4k")
 
 [node name="Hitbox" parent="." unique_id=1816538479 instance=ExtResource("13_ov1oi")]
+visible = false
 
 [node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=1340501381]
 position = Vector2(15, 3)
-shape = SubResource("RectangleShape2D_ejd4k")
+shape = SubResource("RectangleShape2D_2xrq6")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1577125011]
 
 [node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=540210833]
 anchors_preset = -1
+anchor_top = -0.04375
 anchor_bottom = -0.04375
 offset_left = 20.0
 offset_top = 20.0

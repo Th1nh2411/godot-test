@@ -35,4 +35,5 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if player:
+		# Chỉ bám theo trục X của Player được kéo thả vào ô Inspector
 		global_position.x = player.global_position.x
