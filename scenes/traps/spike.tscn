@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bug1bu0f1h7ob"]
+
+[ext_resource type="Script" uid="uid://b4sf8ruert66d" path="res://components/hitbox.gd" id="1_w8xo7"]
+[ext_resource type="Texture2D" uid="uid://b0bs75t2k3d5d" path="res://assets/pixel-adventure/Traps/Spikes/Idle.png" id="2_7ccwm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eikeo"]
+size = Vector2(15, 8)
+
+[node name="Spike" type="Area2D" unique_id=122707230]
+collision_mask = 512
+script = ExtResource("1_w8xo7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1516450684]
+position = Vector2(0, -4)
+texture = ExtResource("2_7ccwm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1464692733]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_eikeo")

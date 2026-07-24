@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://x1xqsb26ndcs" path="res://assets/pixel-adventure/Main Characters/Mask Dude/Wall Jump (32x32).png" id="11_8qjgm"]
 [ext_resource type="PackedScene" uid="uid://ctyhlu43em2jl" path="res://components/Hurtbox.tscn" id="12_20koh"]
 [ext_resource type="PackedScene" uid="uid://bmkh2tf5ufot3" path="res://components/Hitbox.tscn" id="13_ov1oi"]
+[ext_resource type="Texture2D" uid="uid://djcke8s062n4y" path="res://assets/pixel-adventure/Items/Coin_Gems/pixel-art-coin-with-dollar-symbol-8-bit-gold-coin-for-retro-games-and-economic-design-png.webp" id="17_ejd4k"]
+[ext_resource type="AudioStream" uid="uid://3a58wevnioe4" path="res://scenes/player/assets/punch.wav" id="18_2xrq6"]
+[ext_resource type="AudioStream" uid="uid://bt3qgjxcdsnbw" path="res://scenes/player/assets/jump.wav" id="19_pi3ps"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mndc6"]
 atlas = ExtResource("2_rn7t0")
@@ -511,11 +514,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ca8m"]
 size = Vector2(21, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejd4k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pi3ps"]
 resource_local_to_scene = true
 size = Vector2(21, 25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xrq6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kswpp"]
 resource_local_to_scene = true
 size = Vector2(20, 22)
 
@@ -559,22 +562,24 @@ script = ExtResource("8_combat")
 
 [node name="Hurtbox" parent="." unique_id=1044864479 node_paths=PackedStringArray("combat") instance=ExtResource("12_20koh")]
 visible = false
+collision_layer = 513
 combat = NodePath("../Components/Combat")
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1458550662]
 position = Vector2(0.5, 3.5)
-shape = SubResource("RectangleShape2D_ejd4k")
+shape = SubResource("RectangleShape2D_pi3ps")
 
 [node name="Hitbox" parent="." unique_id=1816538479 instance=ExtResource("13_ov1oi")]
 visible = false
 
 [node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=1340501381]
 position = Vector2(15, 3)
-shape = SubResource("RectangleShape2D_2xrq6")
+shape = SubResource("RectangleShape2D_kswpp")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1577125011]
 
 [node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=540210833]
+unique_name_in_owner = true
 anchors_preset = -1
 anchor_top = -0.04375
 anchor_bottom = -0.04375
@@ -586,6 +591,29 @@ theme_override_styles/background = SubResource("StyleBoxFlat_20koh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ov1oi")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD" unique_id=1101033265]
+anchors_preset = -1
+offset_left = 249.0
+offset_top = 6.0
+offset_right = 350.0
+offset_bottom = 29.0
+
+[node name="PixelArtCoinWithDollarSymbol8BitGoldCoinForRetroGamesAndEconomicDesignPng" type="TextureRect" parent="HUD/HBoxContainer" unique_id=1610210409]
+layout_mode = 2
+texture = ExtResource("17_ejd4k")
+expand_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="HUD/HBoxContainer" unique_id=1478641751]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=533087731]
+stream = ExtResource("18_2xrq6")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=644283356]
+stream = ExtResource("19_pi3ps")
 
 [editable path="Hurtbox"]
 [editable path="Hitbox"]

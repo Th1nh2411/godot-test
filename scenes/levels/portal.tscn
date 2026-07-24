@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://8qowi88liubg"]
+
+[ext_resource type="Script" uid="uid://cnh2khv7iwygr" path="res://scenes/levels/portal.gd" id="1_or51j"]
+[ext_resource type="Texture2D" uid="uid://byjupm884p6oq" path="res://assets/pixel-adventure/Items/Checkpoints/End/End (Pressed) (64x64).png" id="2_u5dg8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyfod"]
+atlas = ExtResource("2_u5dg8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlw1e"]
+atlas = ExtResource("2_u5dg8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3urs"]
+atlas = ExtResource("2_u5dg8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6sni"]
+atlas = ExtResource("2_u5dg8")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldstk"]
+atlas = ExtResource("2_u5dg8")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5y6m"]
+atlas = ExtResource("2_u5dg8")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb54p"]
+atlas = ExtResource("2_u5dg8")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d8w6"]
+atlas = ExtResource("2_u5dg8")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ca8m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyfod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlw1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3urs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6sni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldstk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5y6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb54p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5d8w6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ca8m"]
+size = Vector2(44, 42)
+
+[node name="Portal" type="Area2D" unique_id=1211146748]
+script = ExtResource("1_or51j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=28618420]
+sprite_frames = SubResource("SpriteFrames_4ca8m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=708382462]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_4ca8m")

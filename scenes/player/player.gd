@@ -30,11 +30,12 @@ var dash_direction: float = 1.0
 @onready var combat: CombatComponent = $Components/Combat
 @onready var hitbox_collision: CollisionShape2D = $Hitbox/CollisionShape2D
 
-@onready var health_bar: ProgressBar = get_node_or_null("HUD/HealthBar")
+@onready var health_bar: ProgressBar = get_node_or_null("%HealthBar")
 
 ## Hệ thống Điểm số
 signal score_changed(new_score: int)
 var score: int = 0
+@onready var score_label: Label = get_node_or_null("%ScoreLabel")
 
 ## Shared state, owned by Player and read by every component.
 var direction: float = 0.0
@@ -43,10 +44,19 @@ var state: State = State.IDLE
 func add_score(amount: int) -> void:
 	score += amount
 	score_changed.emit(score)
-	# Bạn có thể in tạm ra Console để test trước khi vẽ UI
-	print("Nhặt được tiền! Điểm hiện tại: ", score)
+	
+	# Cập nhật số điểm lên màn hình (nếu ScoreLabel tồn tại)
+	if score_label:
+		score_label.text = str(score)
+	else:
+		print("Chưa tìm thấy %ScoreLabel. Nhặt được tiền! Điểm hiện tại: ", score)
 
 func _ready() -> void:
+	# Kiểm tra xem có dữ liệu Checkpoint không. Nếu có thì Dịch chuyển nhân vật tới đó!
+	# (Lưu ý: Nếu chưa cài Autoload GameManager, code này sẽ văng lỗi. User cần cài trên Editor trước khi chạy)
+	if GameManager.last_checkpoint_pos != Vector2.ZERO:
+		global_position = GameManager.last_checkpoint_pos
+		
 	# Bắt sự kiện khi animation chạy xong để kết thúc trạng thái
 	anim.animation_finished.connect(_on_animation_finished)
 	# Bắt sự kiện hết máu

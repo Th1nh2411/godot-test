@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://swh5hqdqlm1d"]
+
+[ext_resource type="Script" uid="uid://bnvsgv178qww4" path="res://scenes/ui/main_menu/main_menu.gd" id="1_btdse"]
+[ext_resource type="Texture2D" uid="uid://wtoq2kyqv3vw" path="res://assets/pochita.jpg" id="2_2jtls"]
+
+[node name="MainMenu" type="Control" unique_id=1604572569]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_btdse")
+
+[node name="Pochita" type="TextureRect" parent="." unique_id=1580808740]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 960.0
+offset_bottom = 880.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.39937505, 0.399375)
+texture = ExtResource("2_2jtls")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=353939979]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.45882353)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1130664934]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -67.5
+offset_right = 196.0
+offset_bottom = 95.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1343629924]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "RIN ADVENTURE"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=2140681860]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1202054816]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "New
+"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1237073646]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit
+"

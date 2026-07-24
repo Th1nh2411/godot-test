@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dkr3cc51vrydk" path="res://scenes/items/item.gd" id="1_gijvb"]
 [ext_resource type="Texture2D" uid="uid://cpvayxuwldm83" path="res://assets/pixel-adventure/Items/Fruits/Collected.png" id="2_gijvb"]
 [ext_resource type="Texture2D" uid="uid://bstma8sfsph34" path="res://assets/pixel-adventure/Items/Coin_Gems/MonedaD.png" id="3_5ys7s"]
+[ext_resource type="AudioStream" uid="uid://cnh4tu54u3kxs" path="res://scenes/player/assets/coin_collect.wav" id="4_whpuv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dk64t"]
 
@@ -105,3 +106,6 @@ shape = SubResource("CircleShape2D_dk64t")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1630216330]
 sprite_frames = SubResource("SpriteFrames_4ca8m")
 animation = &"collected"
+
+[node name="CollectSound" type="AudioStreamPlayer" parent="." unique_id=1217652994]
+stream = ExtResource("4_whpuv")

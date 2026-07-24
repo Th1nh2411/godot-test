@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://llw08uhkyp47"]
+
+[ext_resource type="Script" uid="uid://cslu48lx0pp3e" path="res://scenes/levels/moving_platform.gd" id="1_a3eo1"]
+[ext_resource type="Texture2D" uid="uid://vppcv1xpmajd" path="res://assets/pixel-adventure/Traps/Platforms/Brown On (32x8).png" id="2_1lj4q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbhrt"]
+atlas = ExtResource("2_1lj4q")
+region = Rect2(0, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llwqg"]
+atlas = ExtResource("2_1lj4q")
+region = Rect2(32, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0baq4"]
+atlas = ExtResource("2_1lj4q")
+region = Rect2(64, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqdio"]
+atlas = ExtResource("2_1lj4q")
+region = Rect2(96, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t8fx"]
+atlas = ExtResource("2_1lj4q")
+region = Rect2(128, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjs6l"]
+atlas = ExtResource("2_1lj4q")
+region = Rect2(160, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy0x4"]
+atlas = ExtResource("2_1lj4q")
+region = Rect2(192, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34g63"]
+atlas = ExtResource("2_1lj4q")
+region = Rect2(224, 0, 32, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ca8m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbhrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llwqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0baq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqdio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t8fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjs6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy0x4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34g63")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de31i"]
+size = Vector2(32, 7)
+
+[node name="MovingPlatform" type="AnimatableBody2D" unique_id=1765577809]
+script = ExtResource("1_a3eo1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1425024043]
+sprite_frames = SubResource("SpriteFrames_4ca8m")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=101077827]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_de31i")
+one_way_collision = true

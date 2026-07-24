@@ -83,6 +83,11 @@ func _handle_jump() -> void:
 		elif jump_count < MAX_JUMPS:
 			player.velocity.y = JUMP_VELOCITY
 			jump_count += 1
+			
+			# Chơi âm thanh nhảy
+			var jump_sound = player.get_node_or_null("JumpSound")
+			if jump_sound:
+				jump_sound.play()
 
 func _handle_attack() -> void:
 	if Input.is_action_just_pressed("attack") and not player.is_attacking:
@@ -93,6 +98,11 @@ func _handle_attack() -> void:
 		var hitbox = player.hitbox_collision.get_parent()
 		hitbox.set_deferred("monitoring", false)
 		hitbox.set_deferred("monitoring", true)
+		
+		# Chơi âm thanh chém
+		var attack_sound = player.get_node_or_null("AttackSound")
+		if attack_sound:
+			attack_sound.play()
 
 func _handle_horizontal() -> void:
 	if wall_jump_lock:

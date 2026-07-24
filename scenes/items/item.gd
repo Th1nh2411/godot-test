@@ -51,8 +51,11 @@ func _on_body_entered(body: Node2D) -> void:
 			# Gọi hàm hồi máu
 			if body.combat:
 				body.combat.heal(value)
-		
-		# Tìm AnimatedSprite2D để chạy hiệu ứng nổ/thu thập
+				
+		# (Tùy chọn) Chơi một âm thanh nhặt đồ hoặc hiệu ứng hạt ở đây
+		var collect_sound = get_node_or_null("CollectSound")
+		if collect_sound:
+			collect_sound.play()
 		var anim_sprite = get_node_or_null("AnimatedSprite2D")
 		if anim_sprite:
 			anim_sprite.play("collected")
